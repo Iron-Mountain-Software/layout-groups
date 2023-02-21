@@ -1,0 +1,22 @@
+{
+  "name": "com.spellboundar.layout-groups",
+  "version": "1.0.0",
+  "displayName": "Layout Groups",
+  "description": "Utility scripts for making responsive layout groups.",
+  "unity": "2019.1",
+  "keywords": [
+    "ui",
+    "vfx"
+  ],
+  "author": "Chris Monteferrante <chris@spellboundar.com>",
+  "type": "tool",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpellBoundAR-Packages/layout-groups.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SpellBoundAR-Packages/layout-groups/issues"
+  },
+  "homepage": "https://github.com/SpellBoundAR-Packages/layout-groups#readme"
+}
