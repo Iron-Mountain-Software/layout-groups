@@ -51,7 +51,7 @@ namespace SpellBoundAR.LayoutGroups
                         elementHeight * rows
                         + _gridLayoutGroup.padding.top
                         + _gridLayoutGroup.padding.bottom
-                        + _gridLayoutGroup.spacing.y * (rows - 1));
+                        + _gridLayoutGroup.spacing.y * Mathf.Max(0, rows - 1));
                     break;
                 }
                 case GridLayoutGroup.Constraint.FixedRowCount:
@@ -63,6 +63,13 @@ namespace SpellBoundAR.LayoutGroups
                     float elementHeight = workableHeight / _gridLayoutGroup.constraintCount;
                     float elementWidth = elementHeight * aspectRatio;
                     _gridLayoutGroup.cellSize = new Vector2(elementWidth, elementHeight);
+                    int cols = transform.childCount / _gridLayoutGroup.constraintCount;
+                    if (transform.childCount % _gridLayoutGroup.constraintCount > 0) cols++;
+                    _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
+                        elementWidth * cols
+                        + _gridLayoutGroup.padding.left
+                        + _gridLayoutGroup.padding.right
+                        + _gridLayoutGroup.spacing.x * Mathf.Max(0, cols - 1));
                     break;
                 }
             }
