@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,16 @@ namespace SpellBoundAR.LayoutGroups
         {
             _rectTransform = GetComponent<RectTransform>();
             _gridLayoutGroup = GetComponent<GridLayoutGroup>();
+        }
+
+        private void OnEnable()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+        }
+
+        private void OnDisable()
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
         }
 
         private void LateUpdate()
