@@ -12,10 +12,29 @@ namespace SpellBoundAR.LayoutGroups
         [SerializeField] private float aspectRatio = 1;
         [SerializeField] private bool forceFitWidth = true;
         [SerializeField] private bool forceFitHeight = true;
+        [SerializeField] private LayoutGroup parentLayoutGroup;
 
         [Header("Cache")]
         private RectTransform _rectTransform;
         private GridLayoutGroup _gridLayoutGroup;
+        private RectTransform _parentLayoutGroupRectTransform;
+
+        private RectTransform ParentLayoutGroupRectTransform
+        {
+            get
+            {
+                if (!parentLayoutGroup)
+                {
+                    _parentLayoutGroupRectTransform = null;
+                    return null;
+                }
+                if (!_parentLayoutGroupRectTransform)
+                {
+                    _parentLayoutGroupRectTransform = parentLayoutGroup.GetComponent<RectTransform>();
+                }
+                return _parentLayoutGroupRectTransform;
+            }
+        }
 
         private void Awake()
         {
@@ -31,6 +50,40 @@ namespace SpellBoundAR.LayoutGroups
         private void OnDisable()
         {
             LayoutRebuilder.ForceRebuildLayoutImmediate(_rectTransform);
+        }
+
+        private float GetWorkableWidth()
+        {
+            if (parentLayoutGroup is VerticalLayoutGroup verticalLayoutGroup)
+            {
+                return ParentLayoutGroupRectTransform.rect.width
+                       - verticalLayoutGroup.padding.left
+                       - verticalLayoutGroup.padding.right
+                       - _gridLayoutGroup.padding.left
+                       - _gridLayoutGroup.padding.right
+                       - _gridLayoutGroup.spacing.x * (_gridLayoutGroup.constraintCount - 1);
+            }
+            return _rectTransform.rect.width
+                   - _gridLayoutGroup.padding.left
+                   - _gridLayoutGroup.padding.right
+                   - _gridLayoutGroup.spacing.x * (_gridLayoutGroup.constraintCount - 1);
+        }
+        
+        private float GetWorkableHeight()
+        {
+            if (parentLayoutGroup is HorizontalLayoutGroup horizontalLayoutGroup)
+            {
+                return ParentLayoutGroupRectTransform.rect.height
+                       - horizontalLayoutGroup.padding.top
+                       - horizontalLayoutGroup.padding.bottom
+                       - _gridLayoutGroup.padding.top
+                       - _gridLayoutGroup.padding.bottom
+                       - _gridLayoutGroup.spacing.y * (_gridLayoutGroup.constraintCount - 1);
+            }
+            return _rectTransform.rect.height
+                   - _gridLayoutGroup.padding.top
+                   - _gridLayoutGroup.padding.bottom
+                   - _gridLayoutGroup.spacing.y * (_gridLayoutGroup.constraintCount - 1);
         }
 
         private void LateUpdate()
@@ -49,10 +102,7 @@ namespace SpellBoundAR.LayoutGroups
             {
                 case GridLayoutGroup.Constraint.FixedColumnCount:
                 {
-                    float workableWidth = _rectTransform.rect.width
-                                          - _gridLayoutGroup.padding.left
-                                          - _gridLayoutGroup.padding.right
-                                          - _gridLayoutGroup.spacing.x * (_gridLayoutGroup.constraintCount - 1);
+                    float workableWidth = GetWorkableWidth();
                     float elementWidth = workableWidth / _gridLayoutGroup.constraintCount;
                     float elementHeight = elementWidth / aspectRatio;
                     _gridLayoutGroup.cellSize = new Vector2(elementWidth, elementHeight);
@@ -67,10 +117,7 @@ namespace SpellBoundAR.LayoutGroups
                 }
                 case GridLayoutGroup.Constraint.FixedRowCount:
                 {
-                    float workableHeight = _rectTransform.rect.height
-                                           - _gridLayoutGroup.padding.top
-                                           - _gridLayoutGroup.padding.bottom
-                                           - _gridLayoutGroup.spacing.y * (_gridLayoutGroup.constraintCount - 1);
+                    float workableHeight = GetWorkableHeight();
                     float elementHeight = workableHeight / _gridLayoutGroup.constraintCount;
                     float elementWidth = elementHeight * aspectRatio;
                     _gridLayoutGroup.cellSize = new Vector2(elementWidth, elementHeight);
