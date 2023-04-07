@@ -1,6 +1,6 @@
 {
   "name": "com.spellboundar.layout-groups",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "displayName": "Layout Groups",
   "description": "Utility scripts for making responsive layout groups.",
   "unity": "2019.1",

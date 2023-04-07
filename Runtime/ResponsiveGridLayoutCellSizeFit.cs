@@ -28,6 +28,7 @@ namespace SpellBoundAR.LayoutGroups
                 {
                     int rowCount = transform.childCount / _gridLayoutGroup.constraintCount;
                     if (transform.childCount % _gridLayoutGroup.constraintCount > 0) rowCount++;
+                    if (rowCount <= 0) rowCount = 1;
                     float workableWidth = _rectTransform.rect.width
                                           - _gridLayoutGroup.padding.left
                                           - _gridLayoutGroup.padding.right
@@ -45,6 +46,7 @@ namespace SpellBoundAR.LayoutGroups
                 {
                     int columnCount = transform.childCount / _gridLayoutGroup.constraintCount;
                     if (transform.childCount % _gridLayoutGroup.constraintCount > 0) columnCount++;
+                    if (columnCount <= 0) columnCount = 1;
                     float workableWidth = _rectTransform.rect.width
                                           - _gridLayoutGroup.padding.left
                                           - _gridLayoutGroup.padding.right
