@@ -1,31 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace SpellBoundAR.LayoutGroups
+namespace IronMountain.LayoutGroups
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]
     public class ResponsiveRectTransform : MonoBehaviour
     {
+        [SerializeField] private RectTransform rectTransform;
         [SerializeField] private bool setWidth = false;
         [SerializeField] private bool setHeight = false;
         [SerializeField] [Range(0, 1)] private float screenWidthPercent;
         [SerializeField] [Range(0, 1)] private float screenHeightPercent;
 
-        [Header("Cache")]
-        private RectTransform _rectTransform;
+        public bool SetWidth
+        {
+            get => setWidth;
+            set => setWidth = value;
+        }
+        
+        public bool SetHeight
+        {
+            get => setHeight;
+            set => setHeight = value;
+        }
+        
+        public float ScreenWidthPercent
+        {
+            get => screenWidthPercent;
+            set => screenWidthPercent = value;
+        }
+        
+        public float ScreenHeightPercent
+        {
+            get => screenHeightPercent;
+            set => screenHeightPercent = value;
+        }
 
         private void Awake()
         {
-            _rectTransform = GetComponent<RectTransform>();
+            if (!rectTransform) rectTransform = GetComponent<RectTransform>();
         }
 
-        private void Update()
+        private void OnValidate()
         {
-            if (!_rectTransform) return;
-            if (setWidth) _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Screen.width * screenWidthPercent);
-            if (setHeight) _rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Screen.height * screenHeightPercent);
+            if (!rectTransform) rectTransform = GetComponent<RectTransform>();
+        }
+
+        private void OnGUI()
+        {
+            if (!rectTransform) return;
+            if (setWidth) rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Screen.width * screenWidthPercent);
+            if (setHeight) rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, Screen.height * screenHeightPercent);
         }
     }
 }

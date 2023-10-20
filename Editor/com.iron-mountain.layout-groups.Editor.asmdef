@@ -1,6 +1,6 @@
 {
-    "name": "com.spellboundar.layout-groups.Editor",
-    "rootNamespace": "SpellBoundAR.LayoutGroups",
+    "name": "com.iron-mountain.layout-groups.Editor",
+    "rootNamespace": "IronMountain.LayoutGroups",
     "references": [
         "GUID:45fada278f49948b7b444129fa8806fd"
     ],

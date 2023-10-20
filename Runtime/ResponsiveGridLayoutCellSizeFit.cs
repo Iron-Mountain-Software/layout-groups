@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpellBoundAR.LayoutGroups
+namespace IronMountain.LayoutGroups
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]

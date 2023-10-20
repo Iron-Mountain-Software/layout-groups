@@ -1,6 +1,6 @@
 {
-    "name": "com.spellboundar.layout-groups",
-    "rootNamespace": "SpellBoundAR.LayoutGroups",
+    "name": "com.iron-mountain.layout-groups",
+    "rootNamespace": "IronMountain.LayoutGroups",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

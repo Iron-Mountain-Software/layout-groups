@@ -1,8 +1,7 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace SpellBoundAR.LayoutGroups.Editor
+namespace IronMountain.LayoutGroups.Editor
 {
     [CustomEditor(typeof(ResponsiveRectTransform))]
     public class ResponsiveRectTransformEditor : UnityEditor.Editor
@@ -11,6 +10,8 @@ namespace SpellBoundAR.LayoutGroups.Editor
 
         public override void OnInspectorGUI()
         {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("rectTransform"));
+
             GUILayout.BeginHorizontal();
             GUILayout.Label("Control Width", GUILayout.MaxWidth(90));
             EditorGUILayout.PropertyField(serializedObject.FindProperty("setWidth"), GUIContent.none, GUILayout.MaxWidth(25));

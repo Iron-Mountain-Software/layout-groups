@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace SpellBoundAR.LayoutGroups
+namespace IronMountain.LayoutGroups
 {
     [ExecuteAlways]
     [RequireComponent(typeof(RectTransform))]
