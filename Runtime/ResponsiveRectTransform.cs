@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace IronMountain.LayoutGroups
@@ -39,6 +40,7 @@ namespace IronMountain.LayoutGroups
         private void Awake()
         {
             if (!rectTransform) rectTransform = GetComponent<RectTransform>();
+            Resize();
         }
 
         private void OnValidate()
@@ -46,7 +48,11 @@ namespace IronMountain.LayoutGroups
             if (!rectTransform) rectTransform = GetComponent<RectTransform>();
         }
 
-        private void OnGUI()
+        private void OnEnable() => Resize();
+        private void Start() => Resize();
+        private void OnGUI() => Resize();
+
+        private void Resize()
         {
             if (!rectTransform) return;
             if (setWidth) rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Screen.width * screenWidthPercent);
