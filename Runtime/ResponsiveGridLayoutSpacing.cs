@@ -34,7 +34,6 @@ namespace IronMountain.LayoutGroups
             RecalculateSpacing();
         }
 
-
         private void Update()
         {
             if (_screenPixels.x != Screen.width || _screenPixels.y != Screen.height) RecalculateSpacing();
