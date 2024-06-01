@@ -1,6 +1,6 @@
 {
   "name": "com.iron-mountain.layout-groups",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "displayName": "Layout Groups",
   "author": "Chris Monteferrante <ludachrismonte@gmail.com>",
   "unity": "2019.1",
@@ -16,7 +16,11 @@
     "url": "git+https://github.com/Iron-Mountain-Software/layout-groups.git"
   },
   "description": "Utility scripts for making responsive layout groups.",
-  "useCases": [],
+  "useCases": [
+    "Dynamically resizing items in a grid layout to fit the size of their area.",
+    "Dynamically resizing items in a grid layout to keep an aspect ratio and expand with row or column constraints.",
+    "Dynamic padding and spacing as a function of screen size."
+  ],
   "directions": null,
   "keywords": [
     "ui",
